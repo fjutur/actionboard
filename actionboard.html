@@ -18,17 +18,24 @@ function init(){
 
 function create(project){
   if (project.name === undefined) project.name = "";
+  if (project.actions === undefined) project.actions = [];
 
   $project = $("<div class='project'></div>");
   $project.append($("<textarea class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
+
+  $.each(project.actions, function(i,a){
+    $project.append($("<textarea class='action'>" + a + "</textarea>"));
+  });
+
+  $project.append($("<textarea class='new action' placeholder='New Action'/ >"));
   $("body").append($project);
 
   $project.find('textarea').keyup(function(e) {
     save();
   });
 
+  // watch for del key to delete project
   $project.keydown(function(e) {
-    console.log(e.which);
     if (e.which == 46){
       $project.fadeOut(300,function(){
         $(this).remove();
@@ -41,9 +48,14 @@ function create(project){
 function save(){
   var projects = [];
   $(".project").each(function(i){
-    var p = { name: $(this).find('.name').val() }
+    var p = { name: $(this).find('.name').val(), actions: [] }
+    $(this).find(".action").each(function(){
+      var a = $(this).val();
+      if (a != "")    
+        p.actions.push(a);
+    });
+
     projects.push(p);
-    console.log("saving " + p.name);      
   });
   localStorage.setItem('projects', JSON.stringify(projects, null, 2));
 }

@@ -28,18 +28,19 @@ html, body {
 
 .action{
   padding-bottom: 10px;
-  //border:1px solid #eee;
+  border:none;
+  height:1em;
+  background:none;
   color:black;
-  width:160px;
+  width:97%;
   text-align:left;
   overflow:hidden;
 }
 
 .new {
   color:black;
-  height:20px;
   width:97%;
-  border:1px dashed gray;
+  border:none;
 }
 
 .edit{
