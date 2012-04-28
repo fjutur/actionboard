@@ -12,28 +12,38 @@
             <script src='jquery-ui/js/jquery.ui.touch-punch.js' type='text/javascript'></script>
 
             <script type="text/javascript">
-    
+function init(){
+  return [{name:""}];
+}    
+
 function save(){
-  var projects = [{name: 'test project'}, ];
-  console.log("saving");      
-  console.log(projects);      
+  var projects = [];
+  $(".project").each(function(i){
+    var p = { name: $(this).find('.name').val() }
+    projects.push(p);
+    console.log("saving " + p.name);      
+  });
   localStorage.setItem('projects', JSON.stringify(projects, null, 2));
 }
 
 function load(){
   var projects = JSON.parse(localStorage.getItem('projects'));
-  if (projects === null) projects = [];
+  if (projects === null) projects = init();
 
   $.each(projects, function(i,p){
     $project = $("<div class='project'></div>");
     $project.append($("<textarea class='name' placeholder='Project Name'>"+ p.name +"</textarea>"));
     $("body").append($project);
   });
+
+  $('textarea').keyup(function(e) {
+    save();
+  });
+
 };
 
 $(document).ready(function() {
 
-  save();
   load();
   
 });
