@@ -1,0 +1,57 @@
+html, body {
+	margin: 0;
+	font-size: 100%;
+	padding: 0;
+	background: #fff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: white;
+}
+
+.project{
+  color:white;
+  float:left;
+  margin:1em;
+  padding:0.2em;
+  width:400px;
+  height:200px;
+  background:#eee;
+}
+
+.project .name {
+  font-size:200%;
+  border: none;
+  background:none;
+  width:95%;
+  height: 1.2em;
+  padding: 0.2em;
+}
+
+.action{
+  padding-bottom: 10px;
+  //border:1px solid #eee;
+  color:black;
+  width:160px;
+  text-align:left;
+  overflow:hidden;
+}
+
+.new {
+  color:black;
+  height:20px;
+  width:97%;
+  border:1px dashed gray;
+}
+
+.edit{
+  border: 1px solid black;
+}
+
+.ui-draggable-dragging{
+   box-shadow: 1px 1px 8px black;  
+background:white;
+  padding:5px;
+}
+
+.ui-state-active {
+  background:#eef;
+}
