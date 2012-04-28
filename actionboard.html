@@ -16,6 +16,18 @@ function init(){
   return [{name:""}];
 }    
 
+function create(project){
+  if (project.name === undefined) project.name = "";
+
+  $project = $("<div class='project'></div>");
+  $project.append($("<textarea class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
+  $("body").append($project);
+
+  $project.find('textarea').keyup(function(e) {
+    save();
+  });
+}
+
 function save(){
   var projects = [];
   $(".project").each(function(i){
@@ -31,15 +43,8 @@ function load(){
   if (projects === null) projects = init();
 
   $.each(projects, function(i,p){
-    $project = $("<div class='project'></div>");
-    $project.append($("<textarea class='name' placeholder='Project Name'>"+ p.name +"</textarea>"));
-    $("body").append($project);
+    create(p);
   });
-
-  $('textarea').keyup(function(e) {
-    save();
-  });
-
 };
 
 $(document).ready(function() {
@@ -53,7 +58,9 @@ $(document).ready(function() {
 </head>
 
 <body>
-
+  <div class="toolbar">
+    <a href="javascript:void(0)" onclick="create({}); save();">New Project</a>
+  </div>
 
 </body>
 </html>
