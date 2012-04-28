@@ -26,6 +26,16 @@ function create(project){
   $project.find('textarea').keyup(function(e) {
     save();
   });
+
+  $project.keydown(function(e) {
+    console.log(e.which);
+    if (e.which == 46){
+      $project.fadeOut(300,function(){
+        $(this).remove();
+        save();
+      });      
+    }
+  });
 }
 
 function save(){
