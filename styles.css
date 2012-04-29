@@ -12,7 +12,7 @@ html, body {
   float:left;
   margin:1em;
   padding:0.2em;
-  width:400px;
+  width:380px;
   height:200px;
   background:#eee;
   overflow:auto;
@@ -22,7 +22,7 @@ html, body {
   font-size:200%;
   border: none;
   background:none;
-  width:90%;
+  width:85%;
   height: 1.2em;
   padding: 0.2em;
 }
