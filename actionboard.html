@@ -20,7 +20,7 @@ function create(project){
   if (project.name === undefined) project.name = "";
   if (project.actions === undefined) project.actions = [];
 
-  $project = $("<div class='project'></div>");
+  var $project = $("<div class='project'></div>");
   $project.append($("<textarea class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
   $project.append($("<a class='button' href='javascript:void(0)' onclick='remove($(this).parent())'>del</a>"));
 
@@ -28,7 +28,7 @@ function create(project){
     $project.append($("<textarea class='action'>" + a + "</textarea>"));
   });
 
-  $project.append($("<textarea class='new action' placeholder='New Action'/ >"));
+  appendNewAction($project);
   $("body").append($project);
 
   $project.find('textarea').keyup(function(e) {
@@ -41,14 +41,20 @@ function save(){
   var projects = [];
   $(".project").each(function(i){
     var p = { name: $(this).find('.name').val(), actions: [] }
+    var emptyActions = 0;    
     $(this).find(".action").each(function(){
+    console.log(p.name + " " + emptyActions);
       var a = $(this).val();
-      if (a != "")    
-        p.actions.push(a);
+      if (a != "") p.actions.push(a);
+      else emptyActions++;
     });
+    if (emptyActions == 0){
+      appendNewAction($(this));
+    }
 
     projects.push(p);
   });
+
   localStorage.setItem('projects', JSON.stringify(projects, null, 2));
 }
 
@@ -66,6 +72,12 @@ function remove($project){
     $(this).remove();
     save();
   });
+}
+
+function appendNewAction($project){
+  var $action = $("<textarea class='new action' placeholder='New Action'/ >");
+  $project.append($action);
+  $action.hide().fadeIn(300);
 }
 
 $(document).ready(function() {
