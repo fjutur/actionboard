@@ -32,6 +32,8 @@ function init(){
 }    
 
 function create(project){
+  _trackEvent("crud", "create");
+
   if (project.name === undefined) project.name = "";
   if (project.actions === undefined) project.actions = [];
 
@@ -56,11 +58,11 @@ function create(project){
 				save();
 			}
 		});
-
-
 }
 
 function save(){
+  _trackEvent("crud", "save");
+
   var projects = [];
   $(".project").each(function(i){
     var p = { name: $(this).find('.name').val(), actions: [] }
@@ -99,6 +101,8 @@ function load(){
 };
 
 function remove($project){
+  _trackEvent("crud", "delete");
+
   $project.fadeOut(300,function(){
     $(this).remove();
     save();
