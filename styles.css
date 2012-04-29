@@ -15,6 +15,7 @@ html, body {
   width:400px;
   height:200px;
   background:#eee;
+  overflow:auto;
 }
 
 .project .name {

@@ -29,11 +29,19 @@ function create(project){
   });
 
   appendNewAction($project);
-  $("body").append($project);
+  $("#projects").append($project);
 
   $project.find('textarea').keyup(function(e) {
     save();
   });
+
+
+  $('#projects').sortable({
+			update: function(event, ui) {
+				save();
+			}
+		});
+
 
 }
 
@@ -103,6 +111,7 @@ $(document).ready(function() {
     <a href="javascript:void(0)" onclick="create({}); save();">New Project</a>
   </div>
 
+  <div id="projects"></div>
 </body>
 </html>
 
