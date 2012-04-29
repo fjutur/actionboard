@@ -17,6 +17,10 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+function trackEvent(category, action){
+  _gaq.push(['_trackEvent', 'Videos', 'Play', 'Gone With the Wind']);
+}
+
 </script>
 
    <title>Actionboard</title>
@@ -32,7 +36,7 @@ function init(){
 }    
 
 function create(project){
-  _trackEvent("crud", "create");
+  trackEvent("crud", "create");
 
   if (project.name === undefined) project.name = "";
   if (project.actions === undefined) project.actions = [];
@@ -61,7 +65,7 @@ function create(project){
 }
 
 function save(){
-  _trackEvent("crud", "save");
+  trackEvent("crud", "save");
 
   var projects = [];
   $(".project").each(function(i){
@@ -101,7 +105,7 @@ function load(){
 };
 
 function remove($project){
-  _trackEvent("crud", "delete");
+  trackEvent("crud", "delete");
 
   $project.fadeOut(300,function(){
     $(this).remove();
