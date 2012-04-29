@@ -72,7 +72,6 @@ function save(){
     var p = { name: $(this).find('.name').val(), actions: [] }
     var emptyActions = [];    
     $(this).find(".action").each(function(){
-    console.log(p.name + " " + emptyActions);
       var a = $(this).val();
       if (a != "") p.actions.push(a);
       else emptyActions.push($(this));
