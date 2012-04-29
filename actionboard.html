@@ -41,17 +41,25 @@ function save(){
   var projects = [];
   $(".project").each(function(i){
     var p = { name: $(this).find('.name').val(), actions: [] }
-    var emptyActions = 0;    
+    var emptyActions = [];    
     $(this).find(".action").each(function(){
     console.log(p.name + " " + emptyActions);
       var a = $(this).val();
       if (a != "") p.actions.push(a);
-      else emptyActions++;
+      else emptyActions.push($(this));
     });
-    if (emptyActions == 0){
+    if (emptyActions.length == 0){
       appendNewAction($(this));
     }
-
+    if (emptyActions.length > 1){
+      emptyActions.pop();
+      $.each(emptyActions, function(i, $a){
+        $a.fadeOut(300,function(){
+          $(this).remove();
+          save();
+        });
+      });
+    }
     projects.push(p);
   });
 
