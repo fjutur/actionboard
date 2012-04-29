@@ -22,6 +22,7 @@ function create(project){
 
   $project = $("<div class='project'></div>");
   $project.append($("<textarea class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
+  $project.append($("<a class='button' href='javascript:void(0)' onclick='remove($(this).parent())'>del</a>"));
 
   $.each(project.actions, function(i,a){
     $project.append($("<textarea class='action'>" + a + "</textarea>"));
@@ -34,15 +35,6 @@ function create(project){
     save();
   });
 
-  // watch for del key to delete project
-  $project.keydown(function(e) {
-    if (e.which == 46){
-      $project.fadeOut(300,function(){
-        $(this).remove();
-        save();
-      });      
-    }
-  });
 }
 
 function save(){
@@ -68,6 +60,13 @@ function load(){
     create(p);
   });
 };
+
+function remove($project){
+  $project.fadeOut(300,function(){
+    $(this).remove();
+    save();
+  });
+}
 
 $(document).ready(function() {
 

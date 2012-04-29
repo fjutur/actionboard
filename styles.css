@@ -21,7 +21,7 @@ html, body {
   font-size:200%;
   border: none;
   background:none;
-  width:95%;
+  width:90%;
   height: 1.2em;
   padding: 0.2em;
 }
@@ -43,16 +43,6 @@ html, body {
   border:none;
 }
 
-.edit{
-  border: 1px solid black;
-}
-
-.ui-draggable-dragging{
-   box-shadow: 1px 1px 8px black;  
-background:white;
-  padding:5px;
-}
-
-.ui-state-active {
-  background:#eef;
+.button{
+  padding:0.3em;
 }
