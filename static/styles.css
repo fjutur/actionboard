@@ -48,11 +48,11 @@ textarea:focus{
 
 
 .action{
-  padding-bottom: 10px;
+  margin-bottom: 0.3em;
   border:none;
-  height:0.5em;
   background:none;
   color:black;
+   
   width:26em;
   text-align:left;
   overflow:hidden;

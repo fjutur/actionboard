@@ -42,11 +42,11 @@ function create(project){
   if (project.actions === undefined) project.actions = [];
 
   var $project = $("<div class='project'><div class='handle'></div></div>");
-  $project.append($("<textarea class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
+  $project.append($("<textarea rows='1' class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
   $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>del</a>"));
 
   $.each(project.actions, function(i,a){
-    $project.append($("<textarea class='action'>" + a + "</textarea>"));
+    $project.append($("<textarea rows='1' class='action'>" + a + "</textarea>"));
   });
 
   appendNewAction($project);
@@ -160,7 +160,7 @@ function remove($project){
 }
 
 function appendNewAction($project){
-  var $action = $("<textarea class='new action' placeholder='New Action'/ >");
+  var $action = $("<textarea  rows='1' class='new action' placeholder='New Action'/ >");
   $project.append($action);
   $action.hide().fadeIn(300);
 }
