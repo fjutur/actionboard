@@ -1,6 +1,6 @@
 html, body {
 	margin: 0;
-	font-size: 100%;
+	font-size: 15px;
 	padding: 0;
 	background: #fff;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -12,33 +12,34 @@ html, body {
   float:left;
   margin:1em;
   padding:0.2em;
-  width:24em;
+  width:380px;
   height:12em;
   background:#eee;
   overflow:auto;
 }
 
+
 .project .handle{
-  border-right: 1px solid gray;
-  width:1em;
-  height:100%;
+  border-right: 1px solid #ddd;
+  width:18px;
   float:left;
+  height:11em;
   margin-right:0.3em;
+    cursor: move;
 }
 
 .project .name {
-  font-size:200%;
+  font-size:24px;
   border: none;
   background:none;
-  width:11em;
-  height: 1.2em;
+  width:300px;
   padding: 0.2em;
 }
 
 textarea {
+  -webkit-appearance: none;
   border: none;
   background:none;
-  -webkit-appearance: none;
 }
 
 textarea:focus{
@@ -46,21 +47,20 @@ textarea:focus{
   border-bottom: 1px dashed #888;
 }
 
-
 .action{
   margin-bottom: 0.3em;
   border:none;
   background:none;
   color:black;
-   
-  width:26em;
+
+  width:350px;
   text-align:left;
   overflow:hidden;
 }
 
 .new {
   color:black;
-  width:26em;
+  width:350px;
   border:none;
 }
 

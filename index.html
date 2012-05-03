@@ -41,7 +41,8 @@ function create(project){
   if (project.name === undefined) project.name = "";
   if (project.actions === undefined) project.actions = [];
 
-  var $project = $("<div class='project'><div class='handle'></div></div>");
+  var $project = $("<div class='project'></div>");
+  $project.append($("<div class='handle'></div>"));
   $project.append($("<textarea rows='1' class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
   $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>del</a>"));
 
@@ -59,6 +60,7 @@ function create(project){
 
   $('#projects').sortable({
       handle: ".handle",
+      cursor: 'move',
 			update: function(event, ui) {
 				save();
 			}
