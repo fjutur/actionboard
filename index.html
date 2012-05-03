@@ -64,8 +64,14 @@ function create(project){
 		});
 }
 
+var editingTimeout;
+
 function save(){
   trackEvent("crud", "save");
+  clearTimeout(editingTimeout);
+  editingTimeout = setTimeout(function(){
+    load();
+  }, 3 * 60 * 1000);
 
   var projects = [];
   $(".project").each(function(i){
@@ -102,32 +108,45 @@ function save(){
         success: function(response){
         },
 	      error: function(xhr, status){
-	      },
+	          $('#status').text('error saving data').fadeIn();
+        },
 	      complete: function(xhr, status){
 	      }
 	  });
 }
 
 function load(){
+  console.log("loading");
+
+  $('#status').text('loading data').fadeIn();
+  $("#projects").fadeOut(function(){
+    $(this).empty()
+    
     var projects; // = JSON.parse(localStorage.getItem('projects'));
     $.ajax({
-	      url: '/backup?name=' + window.location.hash.substr(1),
-	      type: 'GET',
+        url: '/backup?name=' + window.location.hash.substr(1),
+        type: 'GET',
         success: function(response){
           projects = JSON.parse(response);
           if (projects === null) projects = init();
       },
-	      error: function(xhr, status){
+        error: function(xhr, status){
           projects = init();
-	      },
-	      complete: function(xhr, status){
+        },
+        complete: function(xhr, status){
+          $('#status').fadeOut(100);
           $.each(projects, function(i,p){
             create(p);
           });
-	      }
-	  });
+          $("#projects").fadeIn();
 
-  
+          editingTimeout = setTimeout(function(){
+            load();
+          }, 3 * 60 * 1000);
+   	    }
+    });
+
+  });  
 };
 
 function remove($project){
@@ -171,6 +190,7 @@ $(document).ready(function() {
 
 <body>
   <div class="toolbar">
+    <span id="status" style="display:none"></span>
     <a href="javascript:void(0)" onclick="create({}); save();">New Project</a>
   </div>
 
