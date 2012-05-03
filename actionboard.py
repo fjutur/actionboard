@@ -25,7 +25,7 @@ class JsonProperty(db.TextProperty):
 
 
 class ProjectsBackup(db.Model):
-    data = db.StringProperty()
+    data = db.StringProperty(multiline=True)
 
 class Backup(webapp.RequestHandler):
   def get(self):

@@ -92,15 +92,45 @@ function save(){
   });
 
   localStorage.setItem('projects', JSON.stringify(projects, null, 2));
+  $.ajax({
+	      url: '/backup?name=brock',
+	      type: 'PUT',
+        processData: false,
+        crossDomain: false,
+	      data: JSON.stringify(projects, null, null),
+        dataType: "text",
+        success: function(response){
+        },
+	      error: function(xhr, status){
+	      },
+	      complete: function(xhr, status){
+	      }
+	  });
 }
 
 function load(){
   var projects = JSON.parse(localStorage.getItem('projects'));
-  if (projects === null) projects = init();
+    $.ajax({
+	      url: '/backup?name=brock',
+	      type: 'PUT',
+        processData: false,
+        crossDomain: false,
+	      data: JSON.stringify(projects, null, 2),
+        dataType: "text",
+        success: function(response){
+          if (projects === null) projects = init();
 
-  $.each(projects, function(i,p){
-    create(p);
-  });
+          $.each(projects, function(i,p){
+            create(p);
+          });
+      },
+	      error: function(xhr, status){
+	      },
+	      complete: function(xhr, status){
+	      }
+	  });
+
+  
 };
 
 function remove($project){
