@@ -44,7 +44,7 @@ function create(project){
   var $project = $("<div class='project'></div>");
   $project.append($("<div class='handle'></div>"));
   $project.append($("<textarea rows='1' class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
-  $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>del</a>"));
+  $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>x</a>"));
 
   $.each(project.actions, function(i,a){
     $project.append($("<textarea rows='1' class='action'>" + a + "</textarea>"));
