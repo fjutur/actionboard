@@ -163,6 +163,9 @@ function remove($project){
 
 function appendNewAction($project){
   var $action = $("<textarea  rows='1' class='new action' placeholder='New Action'/ >");
+  $action.keyup(function(e) {
+    save();
+  });
   $project.append($action);
   $action.hide().fadeIn(300);
 }
