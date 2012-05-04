@@ -46,10 +46,12 @@ function create(project){
   $project.append($("<div class='handle'></div>"));
   $project.append($("<textarea rows='1' class='name' placeholder='Project Name'>"+ project.name +"</textarea>"));
   $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>x</a>"));
+  $actions = $("<div class='actions'></div>");
+  $project.append($actions);
 
   $.each(project.actions, function(i,a){
     var $a = $("<textarea rows='1' class='action'>" + a + "</textarea>");    
-    $project.append($a);
+    $actions.append($a);
     if (a.indexOf('!') >= 0)
       $a.addClass('important');
   });
@@ -58,7 +60,6 @@ function create(project){
   $("#projects").append($project);
 
   $project.find('textarea').keyup(onKeyUp).autosize();
-
 
   $('#projects').sortable({
       handle: ".handle",
@@ -165,9 +166,11 @@ function remove($project){
 
 function onKeyUp(event) {
   save();
-  if ($(this).val().indexOf('!') >= 0)
+  if ($(this).val().indexOf('!') >= 0){
     $(this).addClass('important');
-  else
+    $parent = $(this).parent();
+    $(this).detach().prependTo($parent).focus();
+  } else
     $(this).removeClass('important');
 }
 
