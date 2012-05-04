@@ -169,7 +169,12 @@ function onKeyUp(event) {
   if ($(this).val().indexOf('!') >= 0){
     $(this).addClass('important');
     $parent = $(this).parent();
-    $(this).detach().prependTo($parent).focus();
+    console.log($parent.find(':first-child'));
+    console.log($(this));
+    if ($parent.find(':first-child').get(0) != $(this).get(0))    
+    $(this).fadeOut(300, function(){
+      $(this).detach().prependTo($parent).fadeIn(300, function(){$(this).focus()});
+    });
   } else
     $(this).removeClass('important');
 }
