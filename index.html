@@ -48,15 +48,16 @@ function create(project){
   $project.append($("<a class='button' title='delete this project' href='javascript:void(0)' onclick='remove($(this).parent())'>x</a>"));
 
   $.each(project.actions, function(i,a){
-    $project.append($("<textarea rows='1' class='action'>" + a + "</textarea>"));
+    var $a = $("<textarea rows='1' class='action'>" + a + "</textarea>");    
+    $project.append($a);
+    if (a.indexOf('!') >= 0)
+      $a.addClass('important');
   });
 
   appendNewAction($project);
   $("#projects").append($project);
 
-  $project.find('textarea').keyup(function(e) {
-    save();
-  }).autosize();
+  $project.find('textarea').keyup(onKeyUp).autosize();
 
 
   $('#projects').sortable({
@@ -162,12 +163,17 @@ function remove($project){
   });
 }
 
+function onKeyUp(event) {
+  save();
+  if ($(this).val().indexOf('!') >= 0)
+    $(this).addClass('important');
+  else
+    $(this).removeClass('important');
+}
+
 function appendNewAction($project){
   var $action = $("<textarea  rows='1' class='new action' placeholder='New Action'/ >");
-  $action.keyup(function(e) {
-    save();
-  });
-  $action.autosize();
+  $action.keyup(onKeyUp).autosize();
   $project.append($action);
   $action.hide().fadeIn(300);
 }
